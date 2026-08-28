@@ -1,0 +1,8 @@
+# robots.txt – Anweisungen für Suchmaschinen
+User-agent: *
+Disallow: /a4tmas
+Disallow: /admin-login
+Allow: /
+
+# Sitemap (falls du eine hast – aktuell nicht)
+# Sitemap: https://tellmeasecret.com/sitemap.xml

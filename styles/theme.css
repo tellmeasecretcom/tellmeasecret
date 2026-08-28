@@ -1,0 +1,462 @@
+/* styles/theme.css – Alle eigenen Styles (aus globals.css ausgelagert) */
+
+:root {
+    --primary: #1a1a2e;
+    --secondary: #16213e;
+    --accent: #e94560;
+    --gold: #c9a84c;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: var(--primary);
+    min-height: 100vh;
+}
+
+/* Elegante Überschriften */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Sanfte Schatten */
+.shadow-elegant {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.shadow-elegant-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.shadow-elegant-hover:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+    transform: translateY(-4px);
+}
+
+/* Goldene Akzente */
+.border-gold {
+    border-color: var(--gold);
+}
+
+.text-gold {
+    color: var(--gold);
+}
+
+.bg-gold-light {
+    background: rgba(201, 168, 76, 0.08);
+}
+
+/* Elegante Buttons – User-Seite */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(26, 26, 46, 0.15);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(26, 26, 46, 0.2);
+    background: #2a2a4e;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--primary);
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Container mit max-width */
+.container-elegant {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Card-Design für Secrets */
+.card-secret {
+    background: white;
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.card-secret:hover {
+    border-color: rgba(201, 168, 76, 0.2);
+}
+
+/* Footer-Stil */
+.footer-elegant {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .container-elegant {
+        padding: 0 1rem;
+    }
+
+    .card-secret {
+        padding: 1.25rem;
+    }
+}
+
+/* ============================================
+   ADMIN-SEITE – ZENTRALE CSS-KLASSEN
+   ============================================ */
+
+/* Admin-Container */
+.admin-container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: #f9fafb;
+    min-height: 100vh;
+    color: #111827;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Admin-Header */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.admin-header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111827;
+    margin: 0;
+}
+
+/* Admin-Timer */
+.admin-timer {
+    background: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.admin-timer p {
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+.admin-timer .timer-count {
+    font-weight: bold;
+    color: #dc2626;
+}
+
+.admin-timer .timer-hint {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+/* Admin-Tabs (5 Spalten) */
+.admin-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-tab {
+    padding: 0.75rem 0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admin-tab .tab-number {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.admin-tab .tab-label {
+    font-size: 0.75rem;
+}
+
+/* Tab-Farben (dynamisch via className) */
+.tab-all {
+    background: #dbeafe;
+    color: #1e3a8a;
+}
+
+.tab-all.active {
+    background: #3b82f6;
+    color: white;
+}
+
+.tab-pending {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.tab-pending.active {
+    background: #eab308;
+    color: white;
+}
+
+.tab-review {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.tab-review.active {
+    background: #f97316;
+    color: white;
+}
+
+.tab-approved {
+    background: #dcfce7;
+    color: #14532d;
+}
+
+.tab-approved.active {
+    background: #22c55e;
+    color: white;
+}
+
+.tab-rejected {
+    background: #fee2e2;
+    color: #7f1d1d;
+}
+
+.tab-rejected.active {
+    background: #ef4444;
+    color: white;
+}
+
+/* Admin-Tabelle */
+.admin-table-wrapper {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.admin-table {
+    min-width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.admin-table thead {
+    background: #f9fafb;
+}
+
+.admin-table th {
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.admin-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover {
+    background: #f9fafb;
+}
+
+/* Status-Badges */
+.status-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.status-pending {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.status-review {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.status-approved {
+    background: #dcfce7;
+    color: #14532d;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #7f1d1d;
+}
+
+/* Admin-Buttons */
+.admin-btn {
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+
+.admin-btn-approve {
+    background: #16a34a;
+    color: white;
+}
+
+.admin-btn-approve:hover {
+    background: #15803d;
+}
+
+.admin-btn-reject {
+    background: #dc2626;
+    color: white;
+}
+
+.admin-btn-reject:hover {
+    background: #b91c1c;
+}
+
+.admin-btn-reset {
+    background: #2563eb;
+    color: white;
+}
+
+.admin-btn-reset:hover {
+    background: #1d4ed8;
+}
+
+.admin-btn-logout {
+    background: #dc2626;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    white-space: nowrap;
+}
+
+.admin-btn-logout:hover {
+    background: #b91c1c;
+}
+
+/* Premium-Toggle (Admin) */
+.premium-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.premium-toggle.is-premium {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.premium-toggle.is-premium:hover {
+    background: #fde68a;
+}
+
+.premium-toggle.is-standard {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+.premium-toggle.is-standard:hover {
+    background: #e5e7eb;
+}
+
+.premium-toggle .star {
+    font-size: 1rem;
+}
+
+/* Reaktionen in Admin-Tabelle */
+.reactions-cell span {
+    margin-right: 0.75rem;
+}
+
+/* Timer */
+.timer-count {
+    font-weight: bold;
+    color: #dc2626;
+}
+
+/* Responsive Admin */
+@media (max-width: 768px) {
+    .admin-tabs {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.25rem;
+    }
+
+    .admin-tab {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.75rem;
+    }
+
+    .admin-tab .tab-number {
+        font-size: 1rem;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+}
