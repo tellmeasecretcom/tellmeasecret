@@ -65,7 +65,9 @@ export default function AdminPage() {
 
   const handleAction = async (id: string, action: 'approve' | 'reject' | 'reset') => {
     try {
-      const response = await fetch(`/api/admin/${action}/${id}`, { method: 'POST' })
+      const response = await fetch(`/api/admin/${action}/${id}`, {
+        method: 'POST',
+      })
       if (response.ok) {
         loadSecrets()
       } else {
@@ -200,9 +202,9 @@ export default function AdminPage() {
                     </td>
                     <td style={{ padding: '1rem 1.5rem', whiteSpace: 'nowrap' }}>
                       <span className={`px-2 py-1 text-xs rounded-full ${secret.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                          secret.status === 'pending_review' ? 'bg-orange-100 text-orange-800' :
-                            secret.status === 'approved' ? 'bg-green-100 text-green-800' :
-                              'bg-red-100 text-red-800'
+                        secret.status === 'pending_review' ? 'bg-orange-100 text-orange-800' :
+                          secret.status === 'approved' ? 'bg-green-100 text-green-800' :
+                            'bg-red-100 text-red-800'
                         }`}>
                         {secret.status === 'pending' ? 'Ausstehend' :
                           secret.status === 'pending_review' ? 'Zu prüfen' :
