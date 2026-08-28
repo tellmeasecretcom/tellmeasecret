@@ -185,7 +185,7 @@ export default function AdminPage() {
                 <th>Aktionen</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody style={{ background: 'white', borderTop: '1px solid #e5e7eb' }}>
               {filteredSecrets.length === 0 ? (
                 <tr>
                   <td colSpan={7} style={{ padding: '1rem 1.5rem', textAlign: 'center', color: '#6b7280' }}>
@@ -194,67 +194,70 @@ export default function AdminPage() {
                 </tr>
               ) : (
                 filteredSecrets.map((secret) => (
-                  <tr key={secret.id}>
-                    <td style={{ maxWidth: '12rem' }}>
+                  <tr key={secret.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
+                    <td style={{ padding: '1rem 1.5rem', fontSize: '0.875rem', color: '#111827', maxWidth: '12rem' }}>
                       <ExpandableText text={secret.content} maxLength={80} />
                     </td>
-                    <td>
-                      <span
-                        className={`status-badge ${secret.status === 'pending'
-                          ? 'status-pending'
-                          : secret.status === 'pending_review'
-                            ? 'status-review'
-                            : secret.status === 'approved'
-                              ? 'status-approved'
-                              : 'status-rejected'
-                          }`}
-                      >
-                        {secret.status === 'pending'
-                          ? 'Ausstehend'
-                          : secret.status === 'pending_review'
-                            ? 'Zu prüfen'
-                            : secret.status === 'approved'
-                              ? 'Genehmigt'
-                              : 'Abgelehnt'}
+                    <td style={{ padding: '1rem 1.5rem', whiteSpace: 'nowrap' }}>
+                      <span className={`px-2 py-1 text-xs rounded-full ${secret.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                          secret.status === 'pending_review' ? 'bg-orange-100 text-orange-800' :
+                            secret.status === 'approved' ? 'bg-green-100 text-green-800' :
+                              'bg-red-100 text-red-800'
+                        }`}>
+                        {secret.status === 'pending' ? 'Ausstehend' :
+                          secret.status === 'pending_review' ? 'Zu prüfen' :
+                            secret.status === 'approved' ? 'Genehmigt' : 'Abgelehnt'}
                       </span>
                     </td>
-                    <td>{formatDate(secret.created_at)}</td>
-                    <td>
+                    <td style={{ padding: '1rem 1.5rem', whiteSpace: 'nowrap', fontSize: '0.875rem', color: '#6b7280' }}>
+                      {formatDate(secret.created_at)}
+                    </td>
+                    <td style={{ padding: '1rem 1.5rem', whiteSpace: 'nowrap', fontSize: '0.875rem', color: '#6b7280' }}>
                       {secret.status === 'pending' || secret.status === 'pending_review' ? (
                         <span style={{ color: '#9ca3af' }}>—</span>
                       ) : (
                         formatDate(secret.updated_at)
                       )}
                     </td>
-                    <td>
+                    <td style={{ padding: '1rem 1.5rem', whiteSpace: 'nowrap', fontSize: '0.875rem', color: '#6b7280' }}>
                       {secret.status === 'approved' ? (
                         <button
                           onClick={() => togglePremium(secret.id, secret.is_premium || false)}
-                          className={`premium-toggle ${secret.is_premium ? 'is-premium' : 'is-standard'}`}
+                          className={`flex items-center gap-1 px-3 py-1 rounded text-xs font-medium transition ${secret.is_premium ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                            }`}
                         >
-                          <span className="star">{secret.is_premium ? '⭐' : '☆'}</span>
+                          <span className="text-base">{secret.is_premium ? '⭐' : '☆'}</span>
                           {secret.is_premium ? 'Premium' : 'Standard'}
                         </button>
                       ) : (
                         <span style={{ color: '#9ca3af', fontSize: '0.75rem' }}>—</span>
                       )}
                     </td>
-                    <td className="reactions-cell">
-                      <span>😲 {secret.reactions_krass || 0}</span>
+                    <td style={{ padding: '1rem 1.5rem', whiteSpace: 'nowrap', fontSize: '0.875rem', color: '#6b7280' }}>
+                      <span style={{ marginRight: '0.75rem' }}>😲 {secret.reactions_krass || 0}</span>
                       <span>😂 {secret.reactions_lustig || 0}</span>
                     </td>
-                    <td>
+                    <td style={{ padding: '1rem 1.5rem', whiteSpace: 'nowrap', fontSize: '0.875rem' }}>
                       {secret.status === 'pending' || secret.status === 'pending_review' ? (
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                          <button className="admin-btn admin-btn-approve" onClick={() => handleAction(secret.id, 'approve')}>
+                          <button
+                            onClick={() => handleAction(secret.id, 'approve')}
+                            className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 text-xs border-0 cursor-pointer"
+                          >
                             ✅ Freigeben
                           </button>
-                          <button className="admin-btn admin-btn-reject" onClick={() => handleAction(secret.id, 'reject')}>
+                          <button
+                            onClick={() => handleAction(secret.id, 'reject')}
+                            className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-xs border-0 cursor-pointer"
+                          >
                             ❌ Ablehnen
                           </button>
                         </div>
                       ) : (
-                        <button className="admin-btn admin-btn-reset" onClick={() => handleAction(secret.id, 'reset')}>
+                        <button
+                          onClick={() => handleAction(secret.id, 'reset')}
+                          className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-xs border-0 cursor-pointer"
+                        >
                           🔄 Zurücksetzen
                         </button>
                       )}
